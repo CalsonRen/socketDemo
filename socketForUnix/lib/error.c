@@ -57,7 +57,7 @@ static void err_doit(int errnoflag, int level, const char* fmt, va_list ap)
 	vsprintf(buf, fmt, ap);
 #endif
 	n = strlen(buf);
-	if(errorflag)
+	if(errnoflag)
 		snprintf(buf + n, MAXLINE - n, ": %s", strerror(errno_save));
 	strcat(buf, "\n");
 	
@@ -68,7 +68,7 @@ static void err_doit(int errnoflag, int level, const char* fmt, va_list ap)
 	else
 	{
 		fflush(stdout);
-		fputs(buf, steerr);
+		fputs(buf, stderr);
 		fflush(stderr);
 	}
 }
